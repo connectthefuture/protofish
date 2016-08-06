@@ -1,9 +1,3 @@
-function object-contains -a object key -d 'Checks if an object contains a key'
-  if set -q $object"__$key"
-    return 0
-  end
-
-  set -l prototype $object'__prototype'
-  set -q $prototype
-    and object-contains $$prototype $key
+function object-contains -a object slot -d 'Checks if an object slot exists'
+  set -l dummy (object-slot% $object $slot)
 end

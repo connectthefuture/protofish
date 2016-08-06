@@ -1,12 +1,21 @@
-function object-set -a object key value -d 'Sets the value of an object key'
-  set -q argv[3]
-    or return 111
+function object-set -a object slot value -d 'Sets the value of an object slot'
+  if not set -q argv[1]
+    echo "object not specified" >&2
+    return 111
+  end
 
-  # Set all values in the key value.
-  set -g $object"__$key" $argv[3..-1]
+  if not set -q argv[2]
+    echo "object slot not specified" >&2
+    return 111
+  end
 
-  # Insert the key into the index.
-  if not contains -- $key $$object
-    set -g $object $$object $key
+  set -e argv[1..2]
+
+  # Set all values in the slot value.
+  set -g $object"_$slot" $argv
+
+  # Insert the slot into the index.
+  if not contains -- (string replace -r -- '\[[\d.\-]+\]' '' $slot) $$object
+    set -g $object $$object $slot
   end
 end
