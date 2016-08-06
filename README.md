@@ -76,8 +76,15 @@ object-slot% $fishy_object foo
 A lot of protofish's lookup logic is done by the `object-slot%` function, which recursively searches the object inheritance tree for the global variable name that corresponds to a given object slot.
 
 ## Inspiration
-Prototypal slot system inspired by [protobj] for Scheme.
+- Prototypal slot system inspired by [protobj] for Scheme.
+
+## License
+[MIT][mit] © [Stephen Coakley][author] et [al][contributors]
 
 
+[author]: https://github.com/coderstephen
+[contributors]: https://github.com/oh-my-fish/plugin-fasd/graphs/contributors
 [fish]: http://fishshell.com
+[mit]: http://opensource.org/licenses/MIT
+[omf]: https://www.github.com/oh-my-fish/oh-my-fish
 [protobj]: http://www.neilvandyke.org/racket/protobj
