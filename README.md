@@ -45,7 +45,7 @@ object-get $my_object colors
 # black white green
 ```
 
-## Inheritance
+### Inheritance
 protofish provides a prototype-based inheritance system for objects, instead of the more formal class-based approach. To extend an object, pass in the parent in an `object` call:
 
 ```fish
@@ -59,7 +59,7 @@ Multiple inheritance is also allowed. A new object will inherit from every objec
 
 To ensure some level of sanity, you cannot change or unset values of a parent object via a child object; Inheritance only provides read access to inherited slots.
 
-## How does it work‽
+### How does it work‽
 If you really must know, protofish uses global variable allocation to store object references, slot slots, and slot values. You can instantly see something _fish_y going on (I apologize for the pun) if you inspect a new object on the command line:
 
 ```fish
@@ -74,6 +74,19 @@ object-slot% $fishy_object foo
 ```
 
 A lot of protofish's lookup logic is done by the `object-slot%` function, which recursively searches the object inheritance tree for the global variable name that corresponds to a given object slot.
+
+## Lambdas
+Lambdas fill in the missing gap for creating localized callback functions on the fly. There is one function provided for defining a lambda, aptly called `lambda`, and a `call` convenience function for calling them:
+
+```fish
+set callback (lambda '
+  echo "Hello, lambdas!"
+')
+call $callback
+# Hello, lambdas!
+```
+
+Of course, you can also `eval` lambdas directly to call them, but `call` takes care of argument escaping and other gotchas `eval` normally has.
 
 ## Inspiration
 - Prototypal slot system inspired by [protobj] for Scheme.
