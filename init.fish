@@ -1,0 +1,1 @@
+autoload $path/functions/str
